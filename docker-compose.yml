@@ -1,0 +1,28 @@
+version: '2'
+services:
+  rewrite-db:
+    image: mysql
+    container_name: rewrite-db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "rewrite"
+      MYSQL_USER: "rewrite_adm"
+      MYSQL_PASSWORD: "jkhds8%563hS"
+      MYSQL_ROOT_PASSWORD: "089783jfgy!36^^"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+  rewrite-app:
+    container_name: rewrite-app
+    image: rewrite-app
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/app
+    environment:
+      MYSQL_HOST: rewrite-db
+      MYSQL_DATABASE: "rewrite"
+      MYSQL_USER: "rewrite_adm"
+      MYSQL_PASSWORD: "jkhds8%563hS"

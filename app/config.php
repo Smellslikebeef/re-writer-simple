@@ -2,7 +2,6 @@
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Console\Application;
 
 
 $paths = ["/var/www/app/src/ReWriter"];
@@ -18,7 +17,7 @@ $params = [
 ];
 
 return [
-    Twig_Environment::class => function() {
+    'twig' => function() {
         $loader = new Twig_Loader_Filesystem('/var/www/app/src/ReWriter/Views');
         return new Twig_Environment($loader);
     },
